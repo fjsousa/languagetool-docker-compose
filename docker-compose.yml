@@ -1,0 +1,18 @@
+version: '3'
+services:
+  languagetool:
+    image: silviof/docker-languagetool:latest
+    container_name: languagetool
+    cap_drop:
+      - ALL
+    user: 65534:65534
+    read_only: true
+    ports:
+      - "8010:8010"
+    #memory: 412m
+    #memory_swap: 500m
+    volumes:
+      - /tmp/languagetool/tmp:/tmp
+      - ~/ngrams:/ngrams
+    environment:
+      - EXTRAOPTIONS="-Xmx382M"
